@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="js/adminController.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</head>
+<body ng-app="myApp">
+
+<div class="container" ng-controller="admincontroller">
+    <br>
+    <br>
+    <h2>Gestionare categorii</h2>
+
+
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Data Comanda</th>
+                <th>Status Comanda</th>
+                <th>Suma totala</th>
+                <th>Adresa livrare</th>
+                <th>Nume-Prenume Client</th>
+                <th>Telefon Client</th>
+                <th>Actiune</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="x in listaComenzi">
+                <td>{{x.id_comanda}}</td>
+                <td>{{x.data_comanda}}</td>
+                <td ng-if="x.status==1">Comanda neprocesata</td>
+                <td ng-if="x.status==0">Comanda aprobata</td>
+                <td ng-if="x.status==2">Comanda anulata</td>
+                <td>{{x.suma_totala}}</td>
+                <td>{{x.user_adresa}}</td>
+                <td>{{x.user_nume}} {{x.user_prenume}}</td>
+                <td>{{x.user_telefon}}</td>
+                <td><a href="#" ng-click="aprobaComanda(x.id_comanda)">Aproba  </a><a href="#" ng-click="refuzaComanda(x.id_comanda)">Refuza</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+</body>
+</html>

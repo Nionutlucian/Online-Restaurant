@@ -1,0 +1,28 @@
+<html>
+<head>
+    <title>Register</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="js/adminController.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</head>
+
+<body ng-app="myApp">
+
+<div class="container" ng-controller="admincontroller">
+    <h2>Adaugare produs in baza de date</h2>
+    <div class="form-group">
+        Nume produs:  <input type="text" class="form-control" name="numeProdus" ng-model="denumireProdus" required><br><br>
+        Pret produs:  <input type="text" class="form-control" name="pretProdus" ng-model="pretProdus" required><br><br>
+        Categorie:   <select id="categorii" ng-model="categorie" class="form-control" ng-options="x as x.denumire_categorie for x in listaCategorii">
+                    </select><br><br>
+        Descriere produs:       <textarea rows="4" cols="50" class="form-control" ng-model="descriereProdus"></textarea><br><br>
+        Poza produs:    <input type="file" class="form-control" name="imagine"  id="imagine" required placeholder="imagine"><br><br>
+        <button id="adaugareProdus" class="btn btn-primary" ng-click="adaugareProdus(denumireProdus,pretProdus,descriereProdus,categorie.id_categorie)">Adauga produs</button><br><br>
+    </div>
+</div>
+
+</body>
+</html>

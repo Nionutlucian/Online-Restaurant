@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="js/adminController.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</head>
+<body ng-app="myApp">
+
+<div class="container" ng-controller="admincontroller">
+   <br>
+    <br>
+    <h2>Gestionare categorii</h2>
+
+
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Denumire Categorie</th>
+                <th>Actiune</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="x in listaCategorii">
+                <td><input type="hidden" value="{{x.id_categorie}}" id="id_categorie"> {{x.id_categorie}}</td>
+                <td><input type="text" name="denumireCategorie" id="denumireCategorie" value="{{x.denumire_categorie}}"> </td>
+                <td><a href="#" ng-click="updateCategory()">Modifica  </a><a href="#" ng-click="stergeCategorie()">Sterge categorie</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+</body>
+</html>

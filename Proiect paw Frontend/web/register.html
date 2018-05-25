@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="js/userController.js"></script>
+    <meta charset="utf-8">
+    <meta name="robots" content="all,follow">
+    <meta name="googlebot" content="index,follow,snippet,archive">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Obaju e-commerce template">
+    <meta name="author" content="Ondrej Svestka | ondrejsvestka.cz">
+    <meta name="keywords" content="">
+
+    <title>
+        ACE Bistro
+    </title>
+
+    <meta name="keywords" content="">
+
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,500,700,300,100' rel='stylesheet' type='text/css'>
+
+    <!-- styles -->
+    <link href="css/font-awesome.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/animate.min.css" rel="stylesheet">
+    <link href="css/owl.carousel.css" rel="stylesheet">
+    <link href="css/owl.theme.css" rel="stylesheet">
+
+    <!-- theme stylesheet -->
+    <link href="css/style.default.css" rel="stylesheet" id="theme-stylesheet">
+
+    <!-- your stylesheet with modifications -->
+    <link href="css/custom.css" rel="stylesheet">
+
+    <script src="js/respond.min.js"></script>
+
+    <link rel="shortcut icon" href="favicon.png">
+
+
+
+</head>
+
+<body ng-app="myApp" ng-controller="usercontroller" ng-init="initFunction();window.close();">
+    <!-- *** TOPBAR ***
+ _________________________________________________________ -->
+    <div id="top">
+        <div class="container">
+
+            <div  style="visibility: hidden" class="col-md-6 offer" data-animate="fadeInDown">
+                <a href="#" class="btn btn-success btn-sm" data-animate-hover="shake">Offer of the day</a>  <a href="#">Get flat 35% off on orders over $50!</a>
+            </div>
+
+            <div ng-controller="usercontroller" class="col-md-6" data-animate="fadeInDown">
+                <ul class="menu">
+                    <li ng-if="!isLogin()"><a href="#" data-toggle="modal" data-target="#login-modal">Login</a>
+                    </li>
+                    <li ng-if="!isLogin()"><a href="register.html">Register</a>
+                    </li>
+                    <li><a href="contact.html">Contact</a>
+                    <li ng-if="isLogin()"><a ng-click="logoutFunction()">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="Login" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="Login">Login</h4>
+                    </div>
+                    <div class="modal-body" ng-controller="usercontroller">
+                        <form>
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="email-modal" placeholder="email" ng-model="emailLogin">
+                            </div>
+                            <div class="form-group">
+                                <input type="password" class="form-control" id="password-modal" placeholder="parola" ng-model="parolaLogin">
+                            </div>
+
+                            <p class="text-center">
+                                <button class="btn btn-primary" ng-click="loginFunction(emailLogin,parolaLogin)"><i class="fa fa-sign-in"></i> Log in</button>
+                            </p>
+
+                        </form>
+
+                        <p class="text-center text-muted">Nu aveti cont?</p>
+                        <p class="text-center text-muted"><a href="register.html"><strong>Inregistrati-va acum!</strong></a></p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- *** TOP BAR END *** -->
+
+    <!--*** NAVBAR ***-->
+    <div class="navbar navbar-default yamm" role="navigation" id="navbar">
+        <div class="container">
+            <div class="navbar-header">
+
+                <a class="navbar-brand home" href="index.html" data-animate-hover="bounce">
+                    <img src="img/logo.png" alt="Obaju logo" class="hidden-xs">
+                    <img src="img/logo-small.png" alt="Obaju logo" class="visible-xs"><span class="sr-only">Obaju - go to homepage</span>
+                </a>
+                <div class="navbar-buttons">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation">
+                        <span class="sr-only">Toggle navigation</span>
+                        <i class="fa fa-align-justify"></i>
+                    </button>
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#search">
+                        <span class="sr-only">Toggle search</span>
+                        <i class="fa fa-search"></i>
+                    </button>
+                    <a class="btn btn-default navbar-toggle" href="basket.html">
+                        <i class="fa fa-shopping-cart"></i>  <span class="hidden-xs">3 </span>
+                    </a>
+                </div>
+            </div>
+            <!--/.navbar-header -->
+
+            <div class="navbar-collapse collapse" id="navigation">
+
+                <ul class="nav navbar-nav navbar-left">
+                    <li class="dropdown yamm-fw"><a href="index.html" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="200">Home</a>
+                    </li>
+                    <li class="dropdown yamm-fw">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="200">Meniu<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <div ng-controller="usercontroller" class="yamm-content">
+                                    <div class="row">
+                                        <div ng-repeat="x in listaCategorii" class="col-sm-3">
+                                            <h5 ng-click="getIdCategorie(x.id_categorie)">{{x.denumire_categorie}}</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /.yamm-content -->
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="dropdown yamm-fw">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="200">Despre noi</a>
+                    </li>
+                </ul>
+            </div>
+            <!--/.nav-collapse -->
+
+            <div class="navbar-buttons"   ng-controller="usercontroller">
+
+                <div class="navbar-collapse collapse right" id="basket-overview">
+                    <a href="basket.html" class="btn btn-primary navbar-btn"><i class="fa fa-shopping-cart"></i><span class="hidden-sm">{{numarProduse}} produse in cos</span></a>
+                </div>
+
+                <div class="navbar-collapse collapse right">
+                    <a href="customer-account.html" class="btn btn-primary navbar-btn"><i class="fa fa-user"></i><span class="hidden-sm">{{getUserLogat()}}</span></a>
+                </div>
+                <!--/.nav-collapse -->
+
+                <div class="navbar-collapse collapse right" id="search-not-mobile">
+                    <button type="button" class="btn navbar-btn btn-primary" data-toggle="collapse" data-target="#search">
+                        <span class="sr-only">Toggle search</span>
+                        <i class="fa fa-search"></i>
+                    </button>
+                </div>
+
+            </div>
+
+            <div class="collapse clearfix" id="search">
+
+                <form class="navbar-form" role="search">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search">
+                        <span class="input-group-btn">
+
+			<button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+
+		    </span>
+                    </div>
+                </form>
+
+            </div>
+            <!--/.nav-collapse -->
+
+        </div>
+        <!-- /.container -->
+    </div>
+    <!-- /#navbar -->
+
+    <!-- *** NAVBAR END *** -->
+
+    <div id="all">
+
+        <div id="content" ng-controller="usercontroller">
+            <div class="container">
+
+                <div class="col-md-12">
+
+                    <ul class="breadcrumb">
+                        <li><a href="#">Home</a>
+                        </li>
+                        <li>Cont nou / Login</li>
+                    </ul>
+
+                </div>
+
+                <div  class="col-md-6">
+                    <div class="box">
+                        <h1>Cont nou</h1>
+                        <form name="myForm">
+                            <div class="form-group">
+                                <label for="nume">Nume</label>
+                                <input type="text" class="form-control" id="nume" name="nume" ng-model="nume"  required>
+                            </div>
+                            <div class="form-group">
+                                <label for="prenume">Prenume</label>
+                                <input type="text" class="form-control" id="prenume" name="prenume" ng-model="prenume" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="adresa">Adresa</label>
+                                <input type="text" class="form-control" id="adresa" name="adresa" ng-model="adresa" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="telefon">Telefon</label>
+                                <input type="text" class="form-control" id="telefon" name="telefon" ng-model="telefon" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="text" class="form-control" id="email" name="email" ng-model="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Parola</label>
+                                <input type="password" class="form-control" id="parola" name="parola" ng-model="parola" required>
+                            </div>
+                            <h5 ng-if="(myForm.nume.$valid==false && myForm.prenume.$valid==false && myForm.adresa.$valid==false && myForm.telefon.$valid==false && myForm.email.$valid==false && myForm.parola.$valid==false)">Va rugam sa completati toate campurile</h5>
+
+                            <div class="text-center">
+                                <button ng-click="registerFunction(nume,prenume,adresa,telefon,email,parola)" class="btn btn-primary"><i class="fa fa-user-md"></i> Register</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div  class="col-md-6">
+                    <div class="box">
+                        <h1>Login</h1>
+                        <form>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="text" class="form-control" name="email"  ng-model="emailLogin">
+                            </div>
+                            <div class="form-group">
+                                <label for="parola">Parola</label>
+                                <input type="password" class="form-control"  name="parola" ng-model="parolaLogin">
+                            </div>
+                            <div class="text-center">
+                                <button ng-click="loginFunction(emailLogin,parolaLogin)" class="btn btn-primary"><i class="fa fa-user-md"></i> Login</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+
+            </div>
+            <!-- /.container -->
+        </div>
+        <!-- /#content -->
+
+
+        <!-- *** FOOTER ***
+ _________________________________________________________ -->
+            </div>
+            <!-- /.container -->
+        </div>
+        <!-- /#footer -->
+
+        <!-- *** FOOTER END *** -->
+
+
+
+
+        <!-- *** COPYRIGHT ***
+ _________________________________________________________ -->
+        <div id="copyright">
+            <div class="container">
+                <div class="col-md-6">
+                    <p class="pull-left">© Creat de Nicolescu Ionut si Luca Madalina</p>
+
+                </div>
+
+            </div>
+        </div>
+        <!-- *** COPYRIGHT END *** -->
+
+
+
+    </div>
+    <!-- /#all -->
+
+
+    
+
+    <!-- *** SCRIPTS TO INCLUDE ***
+ _________________________________________________________ -->
+    <script src="js/jquery-1.11.0.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.cookie.js"></script>
+    <script src="js/waypoints.min.js"></script>
+    <script src="js/modernizr.js"></script>
+    <script src="js/bootstrap-hover-dropdown.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/front.js"></script>
+
+
+
+
+
+
+</body>
+
+</html>

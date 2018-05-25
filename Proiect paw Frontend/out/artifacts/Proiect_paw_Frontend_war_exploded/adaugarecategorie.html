@@ -1,0 +1,23 @@
+<html>
+<head>
+    <title>Register</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="js/adminController.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</head>
+
+<body ng-app="myApp">
+
+<div class="container" ng-controller="admincontroller">
+    <h2>Adaugare categorie in baza de date</h2>
+    <div class="form-group">
+        Denumire categorie:  <input type="text" class="form-control" name="numeCategorie" ng-model="denumire_categorie" required placeholder="Nume categorie"><br><br>
+        <button id="registerButton" class="btn btn-primary" ng-click="adaugareCategorie(denumire_categorie)">Adauga categorie</button><br><br>
+    </div>
+</div>
+
+</body>
+</html>
